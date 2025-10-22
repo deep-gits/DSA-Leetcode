@@ -1,14 +1,20 @@
 class Solution {
     public int reverse(int x) {
-        int num = x;
-        long rev = 0;
-        while(num != 0){
-            int digit = num%10;
-            rev = 10*rev + digit;
-            if(rev > Integer.MAX_VALUE)return 0;
-            if(rev < Integer.MIN_VALUE)return 0;
-            num/=10;
+        int reversed = 0;
+        while (x != 0) {
+            int digit = x % 10;
+            x /= 10;
+
+            // Check for overflow/underflow before updating reversed
+            if (reversed > Integer.MAX_VALUE / 10 || (reversed == Integer.MAX_VALUE / 10 && digit > 7)) {
+                return 0;
+            }
+            if (reversed < Integer.MIN_VALUE / 10 || (reversed == Integer.MIN_VALUE / 10 && digit < -8)) {
+                return 0;
+            }
+
+            reversed = reversed * 10 + digit;
         }
-        return (int)rev;
+        return reversed;
     }
 }
