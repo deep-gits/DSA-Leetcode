@@ -11,11 +11,11 @@ class Solution {
         
         reverse(nums, 0, k - 1);
         
-        // Step 3: Reverse the remaining elements
+        
         reverse(nums, k, n - 1);
     }
 
-    // Helper method to reverse a portion of the array
+    
     private void reverse(int[] nums, int start, int end) {
         while (start < end) {
             int temp = nums[start];
